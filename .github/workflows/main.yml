@@ -6,4 +6,4 @@ on:
       - 'Evernorth/**'
 jobs:
   test:
-    uses: ./Evernorth-QE/workflows/playwright.yml
+    uses: ./Evernorth-QE/.github/workflows/playwright.yml
