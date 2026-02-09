@@ -10,6 +10,7 @@ test('search bus and get number of AC busses', async ({ page }) => {
     await page.getByText('HYDERABAD', { exact: true }).click(); //*[text()='HYDERABAD']
 
     // Enter To Place
+    
     await page.click('input#toPlaceName'); //input[@id='toPlaceName']
     await page.fill('input#toPlaceName', 'Vijayawada');
     await page.getByText('VIJAYAWADA', { exact: true }).click();

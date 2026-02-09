@@ -8,7 +8,7 @@ test.describe('OrangeHRM POM Tests', () => {
     test('Add Employee using POM', async ({ page, loginPage, dashboardPage, employeeListPage, addEmployeePage }) => {
         // Use login page object to perform login
         await loginPage.navigate();
-        await loginPage.enterUserName('Admin');
+        await loginPage.enterUserName('Admin' );
         await loginPage.enterPassword('admin123');
         await loginPage.clickLogin();
         await loginPage.verifyLogin();
