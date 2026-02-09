@@ -1,0 +1,35 @@
+[
+  {
+    "testName": "Filter: Filter with non-existent album 2",
+    "errorMessage": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('//li[@class = \"MuiGridListTile-root\"]')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m18\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//li[@class = \"MuiGridListTile-root\"]')\u001b[22m\n\u001b[2m    9 × locator resolved to 18 elements\u001b[22m\n\u001b[2m      - unexpected value \"18\"\u001b[22m\n",
+    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('//li[@class = \"MuiGridListTile-root\"]')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m18\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//li[@class = \"MuiGridListTile-root\"]')\u001b[22m\n\u001b[2m    9 × locator resolved to 18 elements\u001b[22m\n\u001b[2m      - unexpected value \"18\"\u001b[22m\n\n    at E:\\Evernorth\\Music_Player\\tests\\albumFilter.spec.ts:14:87",
+    "aiAnalysis": {
+      "category": "AIError",
+      "rootCause": "Gemini response was not valid JSON",
+      "suggestedFix": "Check prompt or Gemini output",
+      "confidence": 0
+    }
+  },
+  {
+    "testName": "Filter: Filter with non-existent album",
+    "errorMessage": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('//li[@class = \"MuiGridListTile-root\"]')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m18\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//li[@class = \"MuiGridListTile-root\"]')\u001b[22m\n\u001b[2m    9 × locator resolved to 18 elements\u001b[22m\n\u001b[2m      - unexpected value \"18\"\u001b[22m\n",
+    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('//li[@class = \"MuiGridListTile-root\"]')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m18\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//li[@class = \"MuiGridListTile-root\"]')\u001b[22m\n\u001b[2m    9 × locator resolved to 18 elements\u001b[22m\n\u001b[2m      - unexpected value \"18\"\u001b[22m\n\n    at E:\\Evernorth\\Music_Player\\tests\\albumFilter.spec.ts:14:87",
+    "aiAnalysis": {
+      "category": "AIError",
+      "rootCause": "Gemini response was not valid JSON",
+      "suggestedFix": "Check prompt or Gemini output",
+      "confidence": 0
+    }
+  },
+  {
+    "testName": "Play Song Test",
+    "errorMessage": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at E:\\Evernorth\\Music_Player\\tests\\playSong.spec.ts:8:46",
+    "aiAnalysis": {
+      "category": "AIError",
+      "rootCause": "Gemini response was not valid JSON",
+      "suggestedFix": "Check prompt or Gemini output",
+      "confidence": 0
+    }
+  }
+]
