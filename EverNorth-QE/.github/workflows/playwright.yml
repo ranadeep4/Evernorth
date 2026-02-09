@@ -30,11 +30,7 @@
 name: Playwright Tests
 on:
   workflow_call:
-  # push:
-  #   branches: [ main, master ]
-  #   paths: Evernorth/**
-  # pull_request:
-  #   branches: [ main, master ]
+  
 jobs:
   test:
     timeout-minutes: 60
