@@ -13,4 +13,4 @@ on:
     branches: [ main ]
 jobs:
   call-playwright:
-    uses: ./.github/workflows/playwright.yml@main
+    uses: ./.github/workflows/playwright.yml
