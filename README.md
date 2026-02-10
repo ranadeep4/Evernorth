@@ -6,10 +6,11 @@ practice sites :
 
 ## 🎥 Automation Demo
 
-This recording demonstrates:
-    Music Player :
+# Music Player :
 
-        https://github.com/ranadeep4/Evernorth/blob/main/recordings/Music_playerFailure.mp4
+        https://github.com/ranadeep4/Evernorth/blob/main/Recordings/Music_playerFailure.mp4
+# API Testing : 
+        https://github.com/ranadeep4/Evernorth/blob/main/Recordings/API_Testing.mp4
     
     
 
