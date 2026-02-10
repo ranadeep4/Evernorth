@@ -1,0 +1,26 @@
+import { test, expect } from '../src/basetest.js';
+import { playlistData } from '../src/data/musicData.js';
+
+test.describe('Playlist Tests', () => {
+  for (const data of playlistData) {
+    test(`Playlist: ${data.description}`, async ({ albumPage,loginPage, homePage, playlistPage }) => {
+      await loginPage.goto();
+      await loginPage.login('demo', 'demo');
+      await homePage.openRecentlyAddedAlbums();
+      if (data.shouldExist) {
+        await albumPage.filterByName(data.songName);
+
+        await playlistPage.addSongToPlaylist(data.songName,data.playlistName);
+        
+        await homePage.openFavorites(data.playlistName);
+        await albumPage.filterByName(data.songName);
+        await expect(albumPage.page.locator(`text=${data.songName}`)).toBeVisible();
+
+      } else {     
+        await albumPage.filterByName(data.songName);
+        await expect(albumPage.page.locator('//li[@class = "MuiGridListTile-root"]')).toHaveCount(0);
+      
+      }
+    });
+  }
+});

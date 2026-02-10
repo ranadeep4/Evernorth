@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>QE Automation – Revision & Framework Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Reveal.js core -->
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/white.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/plugin/highlight/github.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Professional typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --r-main-font: 'Inter', sans-serif;
+      --r-heading-font: 'Inter', sans-serif;
+      --r-code-font: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+      --r-background-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --r-main-color: #1a202c;
+      --r-heading-color: #2d3748;
+      --r-link-color: #667eea;
+      
+      --primary: #667eea;
+      --secondary: #764ba2;
+      --success: #48bb78;
+      --warning: #ed8936;
+      --info: #4299e1;
+      --code-bg: #2d3748;
+      --code-text: #e2e8f0;
+    }
+
+    .reveal {
+      font-size: 26px;
+      line-height: 1.4;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .reveal .slides section {
+      padding: 40px 50px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: none;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    }
+    .reveal h1 { font-size: 3em; margin-bottom: 20px; }
+    .reveal h2 { font-size: 2em; margin-bottom: 25px; }
+    .reveal h3 { font-size: 1.4em; margin-bottom: 15px; color: #ffd700; }
+
+    .accent { color: #ffd700; font-weight: 600; }
+    .muted { color: #e2e8f0; }
+    .icon { 
+      color: #ffd700; 
+      margin-right: 0.5em;
+      filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    }
+
+    /* Content container */
+    .content {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 40px 45px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      margin: 20px 0;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .content h2, .content h3 {
+      color: var(--r-heading-color);
+      text-shadow: none;
+    }
+
+    /* Two-column layout */
+    .cols {
+      display: flex;
+      gap: 30px;
+      align-items: stretch;
+      height: 100%;
+    }
+    .col { 
+      flex: 1; 
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Lists */
+    .reveal ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 20px 0;
+    }
+    .reveal ul li {
+      margin: 0 0 14px;
+      padding-left: 1.5em;
+      position: relative;
+      font-size: 0.9em;
+      color: var(--r-main-color);
+    }
+    .reveal ul li::before {
+      content: '\f058';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: var(--success);
+      position: absolute;
+      left: 0;
+      top: 2px;
+      font-size: 1.1em;
+    }
+
+    .pill {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-size: 0.65em;
+      margin: 5px 8px 5px 0;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    /* Code blocks with color themes */
+    .reveal pre {
+      margin: 20px 0;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      font-size: 0.55em;
+      overflow: hidden;
+    }
+    
+    .reveal pre code {
+      padding: 25px 30px;
+      max-height: 450px;
+      font-family: var(--r-code-font);
+      line-height: 1.5;
+      background: var(--code-bg) !important;
+      color: var(--code-text);
+    }
+
+    /* Color-coded code blocks */
+    .code-js pre code { 
+      background: linear-gradient(135deg, #f7df1e 0%, #f0db4f 100%) !important;
+      color: #323330 !important;
+    }
+    
+    .code-ts pre code { 
+      background: linear-gradient(135deg, #3178c6 0%, #235a97 100%) !important;
+      color: white !important;
+    }
+    
+    .code-api pre code { 
+      background: linear-gradient(135deg, #48bb78 0%, #38a169 100%) !important;
+      color: white !important;
+    }
+    
+    .code-ci pre code { 
+      background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%) !important;
+      color: white !important;
+    }
+
+    /* Helper classes */
+    .small { font-size: 0.8em; }
+    .highlight {
+      background: linear-gradient(120deg, #ffd700 0%, #ffed4e 100%);
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: #2d3748;
+      font-weight: 600;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.5em;
+      color: rgba(255, 255, 255, 0.8);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- Title -->
+    <section>
+      <h1><i class="fa-solid fa-robot icon"></i>QE Automation</h1>
+      <h3 class="muted">Real-World Test Automation Framework</h3>
+      <div style="margin-top: 30px;">
+        <span class="pill">Playwright</span>
+        <span class="pill">Cypress</span>
+        <span class="pill">POM Pattern</span>
+        <span class="pill">Custom Fixtures</span>
+        <span class="pill">Data Driven</span>
+        <span class="pill">API Testing</span>
+        <span class="pill">CI/CD Pipeline</span>
+      </div>
+      <div class="footer">EverNorth QE • Feb 2026</div>
+    </section>
+
+    <!-- Agenda -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-list-check icon"></i>Agenda</h2>
+        <div class="cols">
+          <div class="col">
+            <ul>
+              <li>JavaScript + async foundations</li>
+              <li>TypeScript for stable tests</li>
+              <li>Project structure + configs</li>
+              <li>Locator strategies</li>
+            </ul>
+          </div>
+          <div class="col">
+            <ul>
+              <li>Playwright + Cypress essentials</li>
+              <li>POM + custom fixtures (base test)</li>
+              <li>Data-driven + API testing</li>
+              <li>Advanced, planning, CI/CD, AI</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Tell the audience this is a revision deck, not deep-dive.</aside>
+      </div>
+    </section>
+
+    <!-- Part 1: JS Fundamentals -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-brands fa-js icon"></i>JavaScript Fundamentals (Revision)</h2>
+        <div class="cols">
+          <div class="col col-40">
+            <ul>
+              <li><strong>Variables:</strong> <span class="accent">let</span>, <span class="accent">const</span>, avoid <span class="muted">var</span></li>
+              <li><strong>Types:</strong> primitives vs objects</li>
+              <li><strong>Equality:</strong> prefer <span class="accent">===</span> over <span class="muted">==</span></li>
+              <li><strong>Arrays:</strong> map/filter/reduce</li>
+            </ul>
+          </div>
+          <div class="col col-60">
+            <pre><code class="language-js" data-trim>
+"use strict";
+const fruits = ["Apple", "Banana", "Cherry"];
+const upper = fruits.map(f => f.toUpperCase());
+
+// Equality: avoid coercion surprises
+"5" == 5;   // true
+"5" === 5;  // false
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Remind: tests fail often due to coercion + shared mutable arrays.</aside>
+      </div>
+    </section>
+
+    <!-- Part 1: Async -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-bolt icon"></i>Async Patterns You Must Know</h2>
+        <div class="cols">
+          <div class="col">
+            <ul>
+              <li>Callbacks → Promises → <span class="accent">async/await</span></li>
+              <li><strong>Rule:</strong> await the thing you depend on</li>
+              <li><strong>Parallel:</strong> use <span class="accent">Promise.all</span> when safe</li>
+              <li>Don’t mix implicit waits with manual sleeps</li>
+            </ul>
+          </div>
+          <div class="col">
+            <pre><code class="language-js" data-trim>
+// Sequential (clear)
+await page.goto(url);
+await page.getByRole('button', { name: 'Login' }).click();
+
+// Parallel (fast) when independent
+await Promise.all([
+  page.waitForURL(/dashboard/),
+  page.getByRole('button', { name: 'Login' }).click(),
+]);
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Explain why Promise.all reduces flaky timing issues when used correctly.</aside>
+      </div>
+    </section>
+
+    <!-- Part 2: TypeScript -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-code icon"></i>TypeScript for Test Automation</h2>
+        <div class="cols">
+          <div class="col col-40">
+            <ul>
+              <li>Type safety = fewer runtime surprises</li>
+              <li>Interfaces for test data + POM contracts</li>
+              <li>Generics help reusable utilities</li>
+              <li>Keep <span class="accent">strict</span> compiler settings</li>
+            </ul>
+          </div>
+          <div class="col col-60">
+            <pre><code class="language-ts" data-trim>
+type LoginCase = {
+  username: string;
+  password: string;
+  valid: boolean;
+};
+
+const cases: LoginCase[] = [
+  { username: 'demo', password: 'demo', valid: true },
+  { username: 'demo', password: 'wrong', valid: false },
+];
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Use TS types to prevent null/undefined surprises in assertions.</aside>
+      </div>
+    </section>
+
+    <!-- Part 3: Project Structure -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-brands fa-node-js icon"></i>Node Project Structure & Config</h2>
+        <div class="cols">
+          <div class="col">
+            <ul>
+              <li><strong>package.json:</strong> scripts + dependencies</li>
+              <li><strong>src/</strong> → pages, fixtures, utilities, data helpers</li>
+              <li><strong>tests/</strong> → isolated specs that run in parallel</li>
+              <li><strong>Configs:</strong> <span class="accent">playwright.config.ts</span>, <span class="accent">tsconfig.json</span></li>
+            </ul>
+          </div>
+          <div class="col">
+            <pre><code class="language-json" data-trim>
+{
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed"
+  }
+}
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Call out separation: tests vs data vs utilities improves maintainability.</aside>
+      </div>
+    </section>
+
+    <!-- Part 4: Locators -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-location-dot icon"></i>Element Locator Strategies</h2>
+        <div class="cols">
+          <div class="col col-40">
+            <ul>
+              <li>Prefer <span class="accent">getByRole</span> / accessible locators</li>
+              <li>Use <span class="accent">data-testid</span> when needed</li>
+              <li>Avoid brittle CSS chains & XPath</li>
+              <li>Assert on visible user outcomes</li>
+            </ul>
+          </div>
+          <div class="col col-60">
+            <pre><code class="language-ts" data-trim>
+await page.getByRole('textbox', { name: 'Username' }).fill('Admin');
+await page.getByRole('textbox', { name: 'Password' }).fill('admin123');
+await page.getByRole('button', { name: /login/i }).click();
+
+// data-testid fallback
+await page.getByTestId('submit').click();
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Stability > cleverness. Make locators read like requirements.</aside>
+      </div>
+    </section>
+
+    <!-- Part 5: Playwright -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-brands fa-microsoft icon"></i>Playwright Fundamentals</h2>
+        <div class="cols">
+          <div class="col">
+            <ul>
+              <li>Auto-waits for actions + assertions</li>
+              <li>Parallel execution (workers) by default</li>
+              <li>Tracing + screenshots + video help debugging</li>
+              <li><strong>Golden rule:</strong> assert what the user sees</li>
+            </ul>
+            <p class="muted tiny">From the revision guide: Playwright supports multi-browser and modern async/await flows.</p>
+          </div>
+          <div class="col">
+            <pre><code class="language-ts" data-trim>
+import { test, expect } from '@playwright/test';
+
+test('valid login', async ({ page }) => {
+  await page.goto('https://.../auth/login');
+  await page.getByPlaceholder('Username').fill('Admin');
+  await page.getByPlaceholder('Password').fill('admin123');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
+});
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Mention auto-wait + locators reduce flakiness.</aside>
+      </div>
+    </section>
+
+    <!-- Part 6: Cypress -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-brands fa-cypress icon"></i>Cypress Fundamentals</h2>
+        <div class="cols">
+          <div class="col col-40">
+            <ul>
+              <li>Command queue + implicit retries</li>
+              <li>Great dev feedback loop</li>
+              <li>Strong network stubbing (<span class="accent">cy.intercept</span>)</li>
+              <li>Fixtures: JSON test data</li>
+            </ul>
+          </div>
+          <div class="col col-60">
+            <pre><code class="language-js" data-trim>
+cy.visit('/login');
+cy.get('#user').type('demo');
+cy.get('#pass').type('demo');
+cy.get('button[type=submit]').click();
+
+cy.intercept('GET', '/api/**').as('api');
+cy.wait('@api');
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Explain difference: Cypress chains vs Playwright await.</aside>
+      </div>
+    </section>
+
+    <!-- Part 7: POM -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-layer-group icon"></i>Page Object Model (POM)</h2>
+        <div class="cols">
+          <div class="col">
+            <ul>
+              <li>Encapsulate locators + actions</li>
+              <li>Tests read like business flows</li>
+              <li>One change updates many tests</li>
+              <li>Keep page objects action-focused (not assertion-heavy)</li>
+            </ul>
+          </div>
+          <div class="col">
+            <pre><code class="language-ts" data-trim>
+export class LoginPage {
+  constructor(private page: Page) {}
+  async login(user: string, pass: string) {
+    await this.page.getByPlaceholder('Username').fill(user);
+    await this.page.getByPlaceholder('Password').fill(pass);
+    await this.page.getByRole('button', { name: 'Login' }).click();
+  }
+}
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Highlight: POM reduces duplication and maintenance cost.</aside>
+      </div>
+    </section>
+
+    <!-- Part 8: Custom Fixtures / Base Test -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-puzzle-piece icon"></i>Custom Fixtures & Base Test Extension</h2>
+        <div class="cols">
+          <div class="col col-40">
+            <ul>
+              <li><span class="accent">test.extend()</span> injects POMs as fixtures</li>
+              <li>No repetitive <span class="muted">beforeEach</span> boilerplate</li>
+              <li>Each test declares what it needs</li>
+              <li>Cleaner parallel execution</li>
+            </ul>
+          </div>
+          <div class="col col-60">
+            <pre><code class="language-ts" data-trim>
+import { test as base } from '@playwright/test';
+
+export const test = base.extend<{ loginPage: LoginPage }>({
+  loginPage: async ({ page }, use) => {
+    await use(new LoginPage(page));
+  }
+});
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Connect to your framework: tests only import basetest + data.</aside>
+      </div>
+    </section>
+
+    <!-- Part 9: Data Driven -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-database icon"></i>Data‑Driven Testing</h2>
+        <div class="cols">
+          <div class="col">
+            <ul>
+              <li>Run the same test with multiple datasets</li>
+              <li>Sources: JSON, Excel, DB (as per guide)</li>
+              <li>Keep test cases independent for parallel runs</li>
+              <li>Make failures readable: include case description</li>
+            </ul>
+          </div>
+          <div class="col">
+            <pre><code class="language-ts" data-trim>
+const data = [
+  { username: 'user1', password: 'pass1', expected: 'Dashboard' },
+  { username: 'user2', password: 'bad', expected: 'Error' },
+];
+
+data.forEach(tc => {
+  test(`login: ${tc.username}`, async ({ page }) => {
+    // ... steps + assertion
+  });
+});
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Emphasize: data-driven reduces duplication and improves coverage.</aside>
+      </div>
+    </section>
+
+    <!-- Part 10: API Testing -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-plug icon"></i>API Testing (Playwright)</h2>
+        <div class="cols">
+          <div class="col col-40">
+            <ul>
+              <li>CRUD validation: POST/GET/PUT/PATCH/DELETE</li>
+              <li>Token auth (cookie/header)</li>
+              <li>Always dispose request context</li>
+            </ul>
+            <p class="muted tiny">Guide examples use `request.newContext({ baseURL, headers })`.</p>
+          </div>
+          <div class="col col-60">
+            <pre><code class="language-ts" data-trim>
+const api = await request.newContext({
+  baseURL: 'https://jsonplaceholder.typicode.com',
+  extraHTTPHeaders: { 'Content-Type': 'application/json' },
+});
+
+const res = await api.post('/posts', {
+  data: { title: 'foo', body: 'bar', userId: 1 }
+});
+expect(res.status()).toBe(201);
+await api.dispose();
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Mention: API tests are faster and reduce UI dependence.</aside>
+      </div>
+    </section>
+
+    <!-- Part 11: Advanced -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-flask icon"></i>Advanced Browser Interactions</h2>
+        <div class="cols">
+          <div class="col">
+            <ul>
+              <li>Dialogs: register handler <span class="accent">before</span> triggering</li>
+              <li>Frames: use <span class="accent">frameLocator</span></li>
+              <li>New tabs: <span class="accent">context.waitForEvent('page')</span></li>
+              <li>Cookies/session reuse for speed</li>
+            </ul>
+          </div>
+          <div class="col">
+            <pre><code class="language-ts" data-trim>
+page.once('dialog', async (d) => {
+  await d.accept();
+});
+
+const frame = page.frameLocator('iframe.demo-frame');
+await frame.locator('#draggable').dragTo(frame.locator('#droppable'));
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Use examples to show you know how to debug tricky UI interactions.</aside>
+      </div>
+    </section>
+
+    <!-- Part 12: Planning -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-clipboard-check icon"></i>Test Planning & Specifications</h2>
+        <div class="cols">
+          <div class="col">
+            <ul>
+              <li>Maintain test plans in <span class="accent">specs/</span> (Markdown)</li>
+              <li>Include: scenarios, steps, expected results</li>
+              <li>Link plan ↔ seed ↔ test file for traceability</li>
+              <li>Plans make onboarding & maintenance easier</li>
+            </ul>
+          </div>
+          <div class="col">
+            <pre><code class="language-ts" data-trim>
+// spec: specs/orangehrm-employee-management.plan.md
+// seed: tests/seed.spec.ts
+
+test('Valid Login Flow', async ({ page }) => {
+  // Steps + expected outcomes
+});
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Emphasize: plans help you explain intent and coverage.</aside>
+      </div>
+    </section>
+
+    <!-- Part 13: CI/CD -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-rocket icon"></i>CI/CD Integration (GitHub Actions)</h2>
+        <div class="cols">
+          <div class="col col-40">
+            <ul>
+              <li>Use <span class="accent">npm ci</span> for deterministic installs</li>
+              <li>Install browsers: <span class="accent">playwright install --with-deps</span></li>
+              <li>Upload HTML report as artifact</li>
+              <li>CI-aware config: retries/workers/forbidOnly</li>
+            </ul>
+          </div>
+          <div class="col col-60">
+            <pre><code class="language-yaml" data-trim>
+steps:
+  - uses: actions/checkout@v4
+  - uses: actions/setup-node@v4
+    with: { node-version: lts/* }
+  - run: npm ci
+  - run: npx playwright install --with-deps
+  - run: npx playwright test
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Say: CI config prevents "test.only" and improves stability.</aside>
+      </div>
+    </section>
+
+    <!-- Part 14: AI Agents -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-brain icon"></i>AI Agents for Test Automation</h2>
+        <div class="cols">
+          <div class="col">
+            <ul>
+              <li><strong>Planner:</strong> explores app → produces a test plan</li>
+              <li><strong>Generator:</strong> plan item → generates working test with real locators</li>
+              <li><strong>Healer:</strong> runs failing test → diagnoses → fixes → re-runs</li>
+              <li><strong>MCP server:</strong> tools for live browser interaction</li>
+            </ul>
+            <p class="muted tiny">From guide: `.github/agents/` + `.vscode/mcp.json`.</p>
+          </div>
+          <div class="col">
+            <pre><code class="language-json" data-trim>
+{
+  "servers": {
+    "playwright-test": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["playwright", "run-test-mcp-server"]
+    }
+  }
+}
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Explain how AI helps, but human review keeps quality high.</aside>
+      </div>
+    </section>
+
+    <!-- Part 15: Cypress vs Playwright -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-scale-balanced icon"></i>Cypress vs Playwright (Quick Compare)</h2>
+        <div class="cols">
+          <div class="col">
+            <h3 class="accent">Cypress</h3>
+            <ul>
+              <li>Runs inside browser (command queue)</li>
+              <li>Great DX + stubbing</li>
+              <li>Multi-tab limitations</li>
+              <li>Best for frontend-heavy apps</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3 class="accent">Playwright</h3>
+            <ul>
+              <li>Controls browser externally</li>
+              <li>Native multi-tab + multi-origin</li>
+              <li>Strong parallel + multi-browser</li>
+              <li>Great for end-to-end + CI scale</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">Conclude: choose based on product + team + CI needs.</aside>
+      </div>
+    </section>
+
+    <!-- Quick Reference -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-terminal icon"></i>Quick Reference — Commands</h2>
+        <div class="cols">
+          <div class="col">
+            <h3 class="accent">Playwright</h3>
+            <pre><code class="language-bash" data-trim>
+npx playwright test
+npx playwright test --headed
+npx playwright test --ui
+npx playwright test --debug
+npx playwright show-report
+npx playwright install --with-deps
+            </code></pre>
+          </div>
+          <div class="col">
+            <h3 class="accent">Cypress</h3>
+            <pre><code class="language-bash" data-trim>
+npx cypress open
+npx cypress run
+npx cypress run --headed
+npx cypress run --browser chrome
+            </code></pre>
+          </div>
+        </div>
+        <aside class="notes">Good slide to pause and answer practical questions.</aside>
+      </div>
+    </section>
+
+    <!-- Folder map -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-folder-tree icon"></i>Repo Map (What to Remember)</h2>
+        <div class="cols">
+          <div class="col">
+            <ul>
+              <li><strong>JSSamples/</strong> → JavaScript revision</li>
+              <li><strong>TSSamples/</strong> → TypeScript + API examples</li>
+              <li><strong>src/pages/</strong> → POM classes</li>
+              <li><strong>src/basetest.ts</strong> → custom fixtures</li>
+            </ul>
+          </div>
+          <div class="col">
+            <ul>
+              <li><strong>tests/</strong> → Playwright specs</li>
+              <li><strong>cypress/</strong> → Cypress specs + fixtures</li>
+              <li><strong>specs/</strong> → plans/specifications</li>
+              <li><strong>.github/workflows/</strong> → CI pipelines</li>
+            </ul>
+          </div>
+        </div>
+        <aside class="notes">This is your speaking map: point people to where each concept lives.</aside>
+      </div>
+    </section>
+
+    <!-- Empty Mobile Testing Section (leave empty as requested) -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-mobile-screen icon"></i>Mobile Testing</h2>
+        <p class="muted">(To be updated)</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-mobile-screen icon"></i>Mobile Testing</h2>
+        <p class="muted">(Content will be added later)</p>
+      </div>
+    </section>
+
+    <!-- Conclusion -->
+    <section>
+      <div class="frame">
+        <div class="topline"></div>
+        <h2><i class="fa-solid fa-lightbulb icon"></i>Conclusion</h2>
+        <ul>
+          <li>Strong foundations (JS/TS) reduce flaky tests</li>
+          <li>POM + fixtures keep tests clean and scalable</li>
+          <li>Data + API + CI/CD make automation production-ready</li>
+          <li>Use AI to accelerate — validate like an engineer</li>
+        </ul>
+        <p class="muted">Q&A</p>
+        <aside class="notes">Close with the 4 takeaways. Invite questions.</aside>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+<script src="https://unpkg.com/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="https://unpkg.com/reveal.js/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: true,
+    transition: 'fade',
+    width: 1366,
+    height: 768,
+    margin: 0.05,
+    minScale: 0.2,
+    maxScale: 1.05,
+    center: true,
+    plugins: [ RevealHighlight, RevealNotes ]
+  });
+</script>
+
+</body>
+</html>

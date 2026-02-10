@@ -1,0 +1,70 @@
+[
+  {
+    "name": "iPhone 14 Pro",
+    "data": {
+      "price": 999,
+      "color": "Space Black",
+      "capacity": "256GB",
+      "year": 2022,
+      "CPU model": "A16 Bionic",
+      "screen size": 6.1
+    }
+  },
+  {
+    "name": "Samsung Galaxy S23 Ultra",
+    "data": {
+      "price": 1199,
+      "color": "Phantom Black",
+      "capacity": "512GB",
+      "year": 2023,
+      "CPU model": "Snapdragon 8 Gen 2",
+      "screen size": 6.8
+    }
+  },
+  {
+    "name": "Google Pixel 8",
+    "data": {
+      "price": 799,
+      "color": "Obsidian",
+      "capacity": "128GB",
+      "year": 2023,
+      "CPU model": "Google Tensor G3",
+      "screen size": 6.2
+    }
+  },
+  {
+    "name": "iPad Pro 12.9",
+    "data": {
+      "price": 1099,
+      "color": "Silver",
+      "Capacity": "1TB",
+      "year": 2022,
+      "CPU model": "Apple M2",
+      "screen size": 12.9
+    }
+  },
+  {
+    "name": "MacBook Air M3",
+    "data": {
+      "price": 1299,
+      "color": "Midnight",
+      "Capacity": "512GB",
+      "year": 2024,
+      "CPU model": "Apple M3",
+      "screen size": 13.6
+    }
+  },
+  {
+    "invalidObject": {
+      "data": {
+        "price": 1000,
+        "color": "Black"
+      }
+    }
+  },
+  {
+    "partialUpdatePayload": {
+      "name": "Updated Device Name"
+    }
+  }
+]
