@@ -8,6 +8,8 @@ test.describe('Album Filtering Tests', () => {
       await loginPage.login('demo', 'demo');
       await homePage.openRecentlyAddedAlbums();
       await albumPage.filterByName(data.filter);
+      await albumPage.page.waitForTimeout(10000);
+      
       if (data.shouldFind) {
         await expect(albumPage.page.locator('//li[@class = "MuiGridListTile-root"]')).toBeTruthy();
       } else {
