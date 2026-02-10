@@ -1,35 +1,13 @@
 [
   {
-    "testName": "Filter: Filter with non-existent album 2",
-    "errorMessage": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('//li[@class = \"MuiGridListTile-root\"]')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m18\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//li[@class = \"MuiGridListTile-root\"]')\u001b[22m\n\u001b[2m    9 × locator resolved to 18 elements\u001b[22m\n\u001b[2m      - unexpected value \"18\"\u001b[22m\n",
-    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('//li[@class = \"MuiGridListTile-root\"]')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m18\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//li[@class = \"MuiGridListTile-root\"]')\u001b[22m\n\u001b[2m    9 × locator resolved to 18 elements\u001b[22m\n\u001b[2m      - unexpected value \"18\"\u001b[22m\n\n    at E:\\Evernorth\\Music_Player\\tests\\albumFilter.spec.ts:14:87",
+    "testName": "Playlist: Add valid song to playlist",
+    "errorMessage": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=My latin way')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=My latin way')\u001b[22m\n",
+    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('text=My latin way')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('text=My latin way')\u001b[22m\n\n    at C:\\Users\\Admin\\Desktop\\Evernorth\\Music_Player\\tests\\playlist.spec.ts:17:71",
     "aiAnalysis": {
-      "category": "AIError",
-      "rootCause": "Gemini response was not valid JSON",
-      "suggestedFix": "Check prompt or Gemini output",
-      "confidence": 0
-    }
-  },
-  {
-    "testName": "Filter: Filter with non-existent album",
-    "errorMessage": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('//li[@class = \"MuiGridListTile-root\"]')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m18\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//li[@class = \"MuiGridListTile-root\"]')\u001b[22m\n\u001b[2m    9 × locator resolved to 18 elements\u001b[22m\n\u001b[2m      - unexpected value \"18\"\u001b[22m\n",
-    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('//li[@class = \"MuiGridListTile-root\"]')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m18\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('//li[@class = \"MuiGridListTile-root\"]')\u001b[22m\n\u001b[2m    9 × locator resolved to 18 elements\u001b[22m\n\u001b[2m      - unexpected value \"18\"\u001b[22m\n\n    at E:\\Evernorth\\Music_Player\\tests\\albumFilter.spec.ts:14:87",
-    "aiAnalysis": {
-      "category": "AIError",
-      "rootCause": "Gemini response was not valid JSON",
-      "suggestedFix": "Check prompt or Gemini output",
-      "confidence": 0
-    }
-  },
-  {
-    "testName": "Play Song Test",
-    "errorMessage": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
-    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at E:\\Evernorth\\Music_Player\\tests\\playSong.spec.ts:8:46",
-    "aiAnalysis": {
-      "category": "AIError",
-      "rootCause": "Gemini response was not valid JSON",
-      "suggestedFix": "Check prompt or Gemini output",
-      "confidence": 0
+      "category": "Locator Failure",
+      "rootCause": "The Playwright test failed because the element identified by `locator('text=My latin way')` could not be found on the page within the default 5000ms timeout. This indicates the element is either not present in the DOM when the test attempts to interact with it, or its text content does not exactly match the locator.",
+      "suggestedFix": "1. **Verify Element Presence:** Manually inspect the application at the exact point of failure to confirm if an element with the text 'My latin way' is indeed rendered on the page and accessible. 2. **Refine Locator:** Double-check the locator string `'text=My latin way'` for any typos, leading/trailing spaces, or case sensitivity issues. Consider using a more robust or unique locator strategy like `data-testid`, a specific CSS selector, or `role` if available. 3. **Address Timing Issues:** If the element appears after an asynchronous operation, add an explicit wait (e.g., `await page.waitForSelector('text=My latin way')`) to ensure the element is loaded into the DOM before asserting its visibility. 4. **Capture Debug Info:** Enable Playwright screenshots or video recording on test failure to get a visual understanding of the page state when the error occurs.",
+      "confidence": 0.95
     }
   }
 ]

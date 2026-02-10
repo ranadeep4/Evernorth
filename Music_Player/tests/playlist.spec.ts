@@ -18,7 +18,9 @@ test.describe('Playlist Tests', () => {
 
       } else {     
         await albumPage.filterByName(data.songName);
-        await expect(albumPage.page.locator('//li[@class = "MuiGridListTile-root"]')).toHaveCount(0);
+        // await expect(albumPage.page.locator('//li[@class = "MuiGridListTile-root"]')).not.toBeVisible();
+        const items = await  albumPage.page.locator('//li[@class="MuiGridListTile-root"]');
+        await expect(items).toHaveCount(0);
       
       }
     });

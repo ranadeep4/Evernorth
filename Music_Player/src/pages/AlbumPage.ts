@@ -16,6 +16,6 @@ export class AlbumPage {
   async filterByName(name: string) {
     await this._page.fill('input[id="search"]', name);
     await this._page.press('input[id="search"]', 'Enter');
-    await this._page.waitForTimeout(5000);
+    await this._page.waitForTimeout(10000);
   }
 }

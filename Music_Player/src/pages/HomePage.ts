@@ -15,7 +15,10 @@ export class HomePage {
   }
 
   async openRecentlyAddedAlbums() {
-    await this._page.click('a[href*="recentlyAdded"]');
+    // await this._page.click('a[href*="recentlyAdded"]');
+    await this._page.locator('//a[@role="menuitem" and contains(text(),"Recently Added")]').click();
+    
+    
   }
 
   async openUserMenu() {

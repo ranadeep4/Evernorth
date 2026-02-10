@@ -15,7 +15,7 @@ export class PlayerPage {
   .first();
 
     await firstButton.click();
-    await this._page.waitForTimeout(5000); 
+    await this._page.waitForTimeout(10000); 
   }
 
   async pause() {

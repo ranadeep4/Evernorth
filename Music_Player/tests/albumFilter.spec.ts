@@ -11,7 +11,8 @@ test.describe('Album Filtering Tests', () => {
       if (data.shouldFind) {
         await expect(albumPage.page.locator('//li[@class = "MuiGridListTile-root"]')).toBeTruthy();
       } else {
-        await expect(albumPage.page.locator('//li[@class = "MuiGridListTile-root"]')).toHaveCount(0);
+        const items = await  albumPage.page.locator('//li[@class="MuiGridListTile-root"]');
+        await expect(items).toHaveCount(0);
       }
     });
   }

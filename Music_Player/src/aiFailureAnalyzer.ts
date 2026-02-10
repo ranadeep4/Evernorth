@@ -1,6 +1,8 @@
+
 import dotenv from 'dotenv';
 dotenv.config();
 import fetch from 'node-fetch';
+
 
 export interface AIFailureAnalysis {
   category: string;
@@ -9,15 +11,16 @@ export interface AIFailureAnalysis {
   confidence: number;
 }
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+const API_KEY = process.env.GEMINI_API_KEY;
+const ENDPOINT =
+  'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent';
 
 export async function analyzeTestFailure(
   testName: string,
   errorMessage: string,
   stack?: string
 ): Promise<AIFailureAnalysis> {
-  if (!GEMINI_API_KEY) {
+  if (!API_KEY) {
     return {
       category: 'Unknown',
       rootCause: 'Gemini API key not configured',
@@ -26,62 +29,67 @@ export async function analyzeTestFailure(
     };
   }
 
-  const prompt = `Analyze the following Playwright test failure and return ONLY valid JSON with the following fields: category, rootCause, suggestedFix, confidence (0-1).\nTest Name: ${testName}\nError Message: ${errorMessage}\nStack Trace: ${stack ?? 'N/A'}`;
+  const prompt = `
+Return ONLY raw JSON. No markdown. No explanations.
+
+JSON format:
+{
+  "category": string,
+  "rootCause": string,
+  "suggestedFix": string,
+  "confidence": number
+}
+
+Rules:
+- suggestedFix make it understandable and should have < 200 words
+- confidence between 0 and 1
+
+Test Name:
+${testName}
+
+Error Message:
+${errorMessage}
+
+Stack Trace:
+${stack ?? 'N/A'}
+`;
 
   try {
-    const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+    const res = await fetch(`${ENDPOINT}?key=${API_KEY}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [
-          {
-            parts: [
-              { text: prompt }
-            ]
-          }
-        ]
+        contents: [{ parts: [{ text: prompt }] }]
       })
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Gemini API error:', errorText);
-      return {
-        category: 'AIError',
-        rootCause: 'Gemini API call failed',
-        suggestedFix: 'Check Gemini API key or network',
-        confidence: 0
-      };
+    if (!res.ok) {
+      throw new Error(await res.text());
     }
 
-    const data: any = await response.json();
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
-    let result;
-    try {
-      result = JSON.parse(text);
-    } catch (jsonErr) {
-      return {
-        category: 'AIError',
-        rootCause: 'Gemini response was not valid JSON',
-        suggestedFix: 'Check prompt or Gemini output',
-        confidence: 0
-      };
-    }
+    const data: any = await res.json();
+    let text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '{}';
+
+    text = text.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(text);
+
     return {
-      category: result.category ?? 'Unknown',
-      rootCause: result.rootCause ?? 'Unknown',
-      suggestedFix: result.suggestedFix ?? 'Unknown',
-      confidence: Number(result.confidence) || 0.5
+      category: parsed.category ?? 'Unknown',
+      rootCause: parsed.rootCause ?? 'Unknown',
+      suggestedFix: parsed.suggestedFix ?? 'Unknown',
+      confidence: Number(parsed.confidence) || 0.5
     };
-  } catch (err) {
-    console.error('Gemini analysis error:', err);
-    return {
-      category: 'AIError',
-      rootCause: 'Gemini analysis failed',
-      suggestedFix: 'Check Gemini API configuration or network',
-      confidence: 0
-    };
-  }
+  } catch (err: any) {
+  console.error('🔥 RAW GEMINI ERROR 🔥');
+  console.error(err?.message || err);
+  console.error(err?.stack);
+
+  return {
+    category: 'AIError',
+    rootCause: err?.message || 'Gemini request failed',
+    suggestedFix: 'See console logs for exact Gemini error',
+    confidence: 0
+  };
+}
+
 }
