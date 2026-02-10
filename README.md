@@ -11,8 +11,7 @@ This recording demonstrates:
 
         https://github.com/ranadeep4/Evernorth/blob/main/recordings/Music_playerFailure.mp4
     
-    API Testing : 
-        https://github.com/ranadeep4/Evernorth/blob/main/recordings/API_Testing
+    
 
 
 <!-- Reveal.initialize({
