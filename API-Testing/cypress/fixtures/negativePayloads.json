@@ -1,0 +1,11 @@
+{
+  "invalidObject": {
+    "data": {
+      "price": 1000,
+      "color": "Black"
+    }
+  },
+  "partialUpdatePayload": {
+    "name": "Updated Device Name"
+  }
+}
