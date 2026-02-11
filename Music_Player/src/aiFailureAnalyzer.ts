@@ -41,7 +41,7 @@ JSON format:
 }
 
 Rules:
-- suggestedFix make it understandable and should have < 200 words
+- suggestedFix make it understandable and should have < 100 words
 - confidence between 0 and 1
 
 Test Name:
