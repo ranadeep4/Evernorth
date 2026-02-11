@@ -1,0 +1,1097 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>QE Automation - Internship Completion Presentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/white.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+  --r-main-font: 'Inter', sans-serif;
+  --r-heading-font: 'Inter', sans-serif;
+  --r-code-font: 'Fira Code', monospace;
+  --r-main-color: #334155;
+  --r-heading-color: #1e3a8a;
+  --r-link-color: #1e40af;
+  --primary: #1e40af;
+  --secondary: #64748b;
+  --success: #22c55e;
+  --warning: #fbbf24;
+  --info: #1e293b;
+  --accent: #f97316;
+  --light-bg: #f8fafc;
+  --card-bg: #f1f5f9;
+  --card-alt-bg: #e0e7ef;
+  --card-blue-bg: #e0eaff;
+  --card-green-bg: #e6f9ed;
+  --card-orange-bg: #fff7ed;
+}
+
+.reveal {
+  font-size: 30px;
+  line-height: 1.3;
+  background: var(--light-bg);
+  font-family: var(--r-main-font);
+}
+
+.reveal .slides section {
+  padding: 30px 40px;
+  height: 95vh;
+  min-height: 900px;
+  max-height: 98vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--r-heading-color);
+  text-shadow: none;
+}
+.reveal h1 { font-size: 2.4em; margin-bottom: 10px; }
+.reveal h2 { font-size: 1.6em; margin-bottom: 12px; color: var(--primary);}
+.reveal h3 { font-size: 1.15em; margin-bottom: 8px; color: var(--success); }
+
+.accent { color: var(--accent); font-weight: 600; }
+.icon {
+  color: var(--accent);
+  margin-right: 0.4em;
+  filter: none;
+}
+
+.content {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 25px 30px;
+  box-shadow: 0 8px 24px rgba(30, 64, 175, 0.08);
+  margin: 8px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.content h2, .content h3 {
+  color: var(--r-heading-color);
+  text-shadow: none;
+}
+.content h3 { color: var(--primary); }
+
+.reveal ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0;
+}
+.reveal ul li {
+  margin: 0 0 6px;
+  padding-left: 1.4em;
+  position: relative;
+  font-size: 1em;
+  color: var(--r-main-color);
+}
+.reveal ul li::before {
+  content: '\f058';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: var(--success);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: 1em;
+}
+
+.pill {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: rgb(255, 255, 255);
+  padding: 6px 14px;
+  border-radius: 25px;
+  font-size: 0.8em;
+  margin: 4px 6px 4px 0;
+  font-weight: 600;
+  box-shadow: 0 3px 10px rgba(30, 64, 175, 0.10);
+}
+
+.reveal pre {
+  margin: 12px 0;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(30,64,175,0.08);
+  font-size: 0.8em;
+  overflow: hidden;
+}
+.reveal pre code {
+  padding: 12px 16px;
+  max-height: 200px;
+  font-family: var(--r-code-font);
+  line-height: 1.35;
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 10px;
+  color: var(--r-main-color);
+  box-shadow: 0 2px 8px rgba(30,64,175,0.07);
+}
+.card.alt {
+  background: var(--card-alt-bg);
+}
+.card.green {
+  background: var(--card-green-bg);
+}
+.card.orange {
+  background: var(--card-orange-bg);
+}
+.card.blue {
+  background: var(--card-blue-bg);
+}
+
+.card h3 {
+  color: var(--primary) !important;
+  margin-bottom: 6px;
+  text-shadow: none;
+  font-size: 1em;
+}
+.card ul li {
+  font-size: 0.85em;
+  color: var(--r-main-color);
+  margin: 0 0 5px;
+}
+.card ul li::before {
+  color: var(--success);
+}
+
+.highlight {
+  background: var(--warning);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.section-divider {
+  text-align: center;
+}
+.section-divider .content {
+  background: rgba(30,64,175,0.03);
+  border: 2px solid rgba(30,64,175,0.08);
+}
+.section-divider h1 {
+  color: var(--primary);
+  text-shadow: none;
+}
+.section-divider p {
+  color: var(--r-main-color);
+  font-size: 1em;
+}
+
+.flow-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+.flow-step {
+  background: var(--primary);
+  color: rgb(255, 255, 255);
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.75em;
+  font-weight: 600;
+  text-align: center;
+  min-width: 100px;
+}
+.flow-arrow {
+  color: var(--secondary);
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.stat-box {
+  text-align: center;
+  padding: 14px;
+  background: var(--card-alt-bg);
+  border-radius: 10px;
+}
+.stat-box i {
+  font-size: 1.6em;
+  margin-bottom: 6px;
+  display: block;
+}
+.stat-box h3 {
+  font-size: 1em;
+  margin-bottom: 4px;
+  color: var(--primary);
+}
+.stat-box p {
+  font-size: 0.72em;
+  color: var(--secondary);
+  margin: 0;
+}
+
+.ai-highlight {
+  background: var(--card-blue-bg);
+  padding: 16px 20px;
+  border-radius: 12px;
+  color: var(--r-main-color);
+  margin: 10px 0;
+}
+.ai-highlight h3 {
+  color: var(--primary) !important;
+  text-shadow: none;
+}
+.ai-highlight ul li {
+  color: var(--r-main-color);
+}
+.ai-highlight ul li::before {
+  color: var(--success);
+}
+
+.endpoint-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  margin-top: 10px;
+}
+.endpoint-table th {
+  background: var(--primary);
+  color: rgb(255, 255, 255);
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+}
+.endpoint-table td {
+  padding: 7px 12px;
+  border-bottom: 1px solid #e2e8f0;
+  color: var(--r-main-color);
+}
+.endpoint-table tr:nth-child(even) td {
+  background: var(--card-alt-bg);
+}
+.method-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.85em;
+  color: rgb(255, 255, 255);
+}
+.method-get { background: var(--success); }
+.method-post { background: var(--primary); }
+.method-put { background: var(--warning); color: #1e293b;}
+.method-patch { background: var(--secondary);}
+.method-delete { background: var(--accent);}
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ==================== SLIDE 1: TITLE ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-vial icon"></i>QE Automation Framework</h2>
+      <div class="content" style="text-align: center;">
+        <h1 style="color: var(--primary); font-size: 2.2em; margin-bottom: 20px;">Training Completion Presentation</h1>
+        <p style="font-size: 1em; color: var(--r-main-color); margin-bottom: 20px;">
+          My Journey in Quality Engineering &mdash; Training, Projects & Automation
+        </p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 20px;">
+          <span class="pill">Playwright</span>
+          <span class="pill">Cypress</span>
+          <span class="pill">POM Pattern</span>
+          <span class="pill">Data-Driven</span>
+          <span class="pill">API Testing</span>
+          <span class="pill">AI Failure Analysis</span>
+          <span class="pill">Mobile Testing</span>
+          <span class="pill">CI/CD Pipeline</span>
+          <span class="pill">Appium</span>
+          <span class="pill">WebDriverIO</span>
+        </div>
+        <p style="margin-top: 30px; color: var(--r-heading-color); font-size: 0.85em;">
+          <i class="fa-solid fa-building"></i> EverNorth QE &bull; February 2026
+        </p>
+        <p style = 'margin-left: 600px; color: #1e3a8a;'> -Dema Ranadeep Reddy                 </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 2: LEARNING JOURNEY ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-graduation-cap icon"></i>My Learning Journey</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">What I Mastered During My Internship</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h3><i class="fa-brands fa-js"></i> Foundation</h3>
+            <ul>
+              <li>JavaScript & TypeScript Fundamentals</li>
+              <li>Async/Await & Promise Patterns</li>
+              <li>Node.js Ecosystem & ES6+ Features</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-robot"></i> Automation Frameworks</h3>
+            <ul>
+              <li>Playwright E2E Testing</li>
+              <li>Cypress Interactive Testing</li>
+              <li>Cross-Browser & Parallel Execution</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-layer-group"></i> Design Patterns</h3>
+            <ul>
+              <li>Page Object Model (POM)</li>
+              <li>Custom Test Fixtures & DI</li>
+              <li>Data-Driven Testing (JSON)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3><i class="fa-solid fa-rocket"></i> Advanced Concepts</h3>
+            <ul>
+              <li>API Testing & CI/CD (GitHub Actions)</li>
+              <li>Mobile Testing & Appium</li>
+              <li>WebDriverIO & Device Emulation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 3: JS & TS FOUNDATIONS ==================== -->
+    <section>
+      <h2><i class="fa-brands fa-js icon"></i>JavaScript & TypeScript</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">The Building Blocks of Test Automation</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h3><i class="fa-solid fa-code"></i> JavaScript Core</h3>
+            <ul>
+              <li>Variables &mdash; let, const (block-scoped)</li>
+              <li>Functions &mdash; arrow functions, callbacks</li>
+              <li>Arrays &mdash; map, filter, forEach</li>
+              <li>Async/Await &mdash; handle async operations</li>
+              <li>Promises &mdash; chaining & error handling</li>
+              <li>Try/Catch &mdash; exception handling</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-shield-halved"></i> TypeScript Advantages</h3>
+            <ul>
+              <li>Type safety &mdash; catch errors at compile time</li>
+              <li>Interfaces &mdash; enforce data structure</li>
+              <li>Better IDE autocomplete & IntelliSense</li>
+              <li>Safer refactoring across codebase</li>
+              <li>Self-documenting test code</li>
+              <li>Used across all my Playwright projects</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 4: PLAYWRIGHT ==================== -->
+    <section>
+      <h2><i class="fa-brands fa-microsoft icon"></i>Playwright Framework</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">Modern Browser Automation</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h3><i class="fa-solid fa-bolt"></i> Key Features</h3>
+            <ul>
+              <li>Auto-wait &mdash; no manual waits needed</li>
+              <li>Multi-browser &mdash; Chrome, Firefox, Safari</li>
+              <li>Parallel test execution with workers</li>
+              <li>Built-in API testing support</li>
+              <li>Powerful trace viewer & debugging</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-check-circle"></i> Why I Chose It</h3>
+            <ul>
+              <li>Fast and reliable test execution</li>
+              <li>First-class TypeScript support</li>
+              <li>Multiple tabs & browser contexts</li>
+              <li>Device emulation for mobile testing</li>
+              <li>Excellent documentation & community</li>
+            </ul>
+          </div>
+        </div>
+        <p style="text-align: center; margin-top: 12px; font-size: 0.85em; color: #718096;">
+          <span class="highlight">Used in:</span> Music Player Automation &bull; OrangeHRM &bull; APSRTC
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 5: CYPRESS ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-flask icon"></i>Cypress Framework</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">Interactive Testing Experience</h3>
+        <div class="grid-2">
+          <div class="card green">
+            <h3><i class="fa-solid fa-star"></i> Cypress Strengths</h3>
+            <ul>
+              <li>Real-time test execution in browser</li>
+              <li>Time-travel debugging &mdash; see every step</li>
+              <li>Automatic waiting & retry mechanism</li>
+              <li>Powerful network stubbing (cy.intercept)</li>
+              <li>Visual interactive test runner</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-lightbulb"></i> Best Use Cases</h3>
+            <ul>
+              <li>Rapid component & UI testing</li>
+              <li>API testing with cy.request()</li>
+              <li>Frontend-focused applications</li>
+              <li>Developer-friendly debugging</li>
+              <li>Fixture-based test data management</li>
+            </ul>
+          </div>
+        </div>
+        <p style="text-align: center; margin-top: 12px; font-size: 0.85em; color: #718096;">
+          <span class="highlight">Used in:</span> REST API Testing Project (restful-api.dev)
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 6: POM & CUSTOM FIXTURES ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-layer-group icon"></i>POM & Custom Fixtures</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">Building Maintainable & Scalable Test Code</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h3><i class="fa-solid fa-puzzle-piece"></i> Page Object Model</h3>
+            <ul>
+              <li>Locators centralized in page classes</li>
+              <li>Reusable actions across all tests</li>
+              <li>Update once, fix everywhere</li>
+              <li>Clean separation of concerns</li>
+              <li>Private fields for encapsulation</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> Custom Fixtures</h3>
+            <ul>
+              <li>Dependency injection pattern</li>
+              <li>Auto page object creation via base.extend</li>
+              <li>Zero boilerplate in test files</li>
+              <li>Full test isolation & parallel safety</li>
+              <li>Lazy-loaded page instances</li>
+            </ul>
+          </div>
+        </div>
+        <pre><code class="language-typescript">export const test = base.extend<{ loginPage: LoginPage; homePage: HomePage }>({
+  loginPage: async ({ page }, use) => await use(new LoginPage(page)),
+  homePage: async ({ page }, use) => await use(new HomePage(page))
+});</code></pre>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 7: DATA-DRIVEN & CI/CD ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-database icon"></i>Data-Driven Testing & CI/CD</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">Maximize Coverage, Automate Everything</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h3><i class="fa-solid fa-table"></i> Data-Driven Approach</h3>
+            <ul>
+              <li>Test data in JSON & TypeScript files</li>
+              <li>Loop through datasets with forEach</li>
+              <li>Separate test logic from test data</li>
+              <li>Easily add new scenarios without code</li>
+              <li>Interface-typed data for safety</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-infinity"></i> CI/CD with GitHub Actions</h3>
+            <ul>
+              <li>Run tests on every push & PR</li>
+              <li>Auto browser install on CI</li>
+              <li>Upload HTML reports as artifacts</li>
+              <li>Catch regressions before merge</li>
+              <li>Consistent Ubuntu test environment</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 8: MOBILE TESTING ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-mobile-screen icon"></i>Mobile Testing</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">Testing Across Devices & Platforms</h3>
+        <div class="grid-3">
+          <div class="card">
+            <h3><i class="fa-solid fa-mobile-alt"></i> Appium</h3>
+            <ul>
+              <li>Native & hybrid mobile app testing</li>
+              <li>iOS and Android support</li>
+              <li>Uses WebDriver protocol</li>
+              <li>Real device & emulator testing</li>
+              <li>Cross-platform scripts</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-globe"></i> WebDriverIO</h3>
+            <ul>
+              <li>Next-gen browser & mobile automation</li>
+              <li>Built-in Appium integration</li>
+              <li>Supports web & native apps</li>
+              <li>Rich plugin ecosystem</li>
+              <li>Parallel execution support</li>
+            </ul>
+          </div>
+          <div class="card blue">
+            <h3><i class="fa-solid fa-expand"></i> Playwright Mobile</h3>
+            <ul>
+              <li>Device emulation (Pixel, iPhone)</li>
+              <li>Responsive viewport testing</li>
+              <li>Touch gesture simulation</li>
+              <li>Geolocation testing</li>
+              <li>Network throttling</li>
+            </ul>
+          </div>
+        </div>
+        <p style="text-align: center; margin-top: 12px; font-size: 0.82em; color: #718096;">
+          <span class="highlight">Key Takeaway:</span> Appium for native apps, WebDriverIO for cross-platform, Playwright for responsive web
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 9: BEST PRACTICES ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-star icon"></i>Best Practices I Learned</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">Industry Standards & Guidelines</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h3><i class="fa-solid fa-code"></i> Code Quality</h3>
+            <ul>
+              <li>Meaningful test names that describe intent</li>
+              <li>Keep tests independent &mdash; no shared state</li>
+              <li>Follow DRY &mdash; reuse page objects</li>
+              <li>Avoid hardcoded waits (use auto-wait)</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-folder-tree"></i> Project Structure</h3>
+            <ul>
+              <li>Separate pages/, tests/, data/ folders</li>
+              <li>External test data (JSON/TS)</li>
+              <li>Configuration files (playwright.config)</li>
+              <li>Version control everything</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-gauge-high"></i> Performance</h3>
+            <ul>
+              <li>Parallel execution with workers</li>
+              <li>Use API for test setup when possible</li>
+              <li>Minimize unnecessary UI interactions</li>
+              <li>Reuse browser contexts</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3><i class="fa-solid fa-scale-balanced"></i> Right Tool for the Job</h3>
+            <ul>
+              <li>Playwright &mdash; E2E & cross-browser</li>
+              <li>Cypress &mdash; rapid feedback & API tests</li>
+              <li>Appium &mdash; native mobile apps</li>
+              <li>WebDriverIO &mdash; cross-platform mobile</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 10: TRAINING KEY TAKEAWAYS ==================== -->
+    
+
+    <!-- ==================== SECTION DIVIDER: MUSIC PLAYER ==================== -->
+    <section class="section-divider">
+      <h2><i class="fa-solid fa-music icon"></i>Project 1</h2>
+      <div class="content" style="text-align: center;">
+        <h1 style="color: rgb(77, 110, 180); font-size: 2.2em; margin-bottom: 15px;">
+          <i class="fa-solid fa-headphones" style="color: #ffd700;"></i> Music Player Automation
+        </h1>
+        <p style="font-size: 1em; color: rgba(92, 104, 175, 0.9); margin-bottom: 20px;">
+          End-to-End Testing of Navidrome Music Player with AI-Powered Failure Analysis
+        </p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
+          <span class="pill">Playwright</span>
+          <span class="pill">TypeScript</span>
+          <span class="pill">POM Pattern</span>
+          <span class="pill">Custom Fixtures</span>
+          <span class="pill">Data-Driven</span>
+          <span class="pill">Gemini AI</span>
+          <span class="pill">GitHub Actions</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 12: MUSIC PLAYER - ARCHITECTURE ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-sitemap icon"></i>Music Player &mdash; Architecture</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">Project Structure & Design</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h3><i class="fa-solid fa-folder-open"></i> Project Layout</h3>
+            <ul>
+              <li><b>src/pages/</b> &mdash; LoginPage, HomePage, AlbumPage, PlayerPage, PlaylistPage</li>
+              <li><b>src/data/</b> &mdash; loginData.ts, musicData.ts</li>
+              <li><b>src/basetest.ts</b> &mdash; Custom fixtures</li>
+              <li><b>tests/</b> &mdash; 7 spec files covering all features</li>
+              <li><b>src/AIAnalyzerReporter.ts</b> &mdash; AI reporter</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-cogs"></i> Tech Stack</h3>
+            <ul>
+              <li>Playwright + TypeScript</li>
+              <li>Page Object Model with 5 page classes</li>
+              <li>Custom fixtures via base.extend()</li>
+              <li>Typed test data interfaces</li>
+              <li>GitHub Actions CI/CD pipeline</li>
+            </ul>
+          </div>
+        </div>
+        <div class="flow-row" style="margin-top: 14px;">
+          <div class="flow-step">basetest.ts<br><small>Fixtures</small></div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-step">Page Objects<br><small>5 Classes</small></div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-step">Test Specs<br><small>7 Files</small></div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-step">AI Reporter<br><small>Gemini</small></div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-step">HTML Report<br><small>+ AI JSON</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 13: MUSIC PLAYER - WHAT I TESTED ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-list-check icon"></i>Music Player &mdash; Test Scenarios</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">Comprehensive Feature Coverage</h3>
+        <div class="grid-3">
+          <div class="card">
+            <h3><i class="fa-solid fa-right-to-bracket"></i> Login</h3>
+            <ul>
+              <li>Valid credentials</li>
+              <li>Invalid password</li>
+              <li>Invalid username</li>
+              <li>Empty credentials</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-right-from-bracket"></i> Logout</h3>
+            <ul>
+              <li>User menu access</li>
+              <li>Logout flow</li>
+              <li>Sign-in page verify</li>
+            </ul>
+          </div>
+          <div class="card blue">
+            <h3><i class="fa-solid fa-magnifying-glass"></i> Search</h3>
+            <ul>
+              <li>Search by song name</li>
+              <li>Results verification</li>
+              <li>Grid list validation</li>
+            </ul>
+          </div>
+          <div class="card green">
+            <h3><i class="fa-solid fa-play"></i> Play Song</h3>
+            <ul>
+              <li>Navigate to albums</li>
+              <li>Play first song</li>
+              <li>Verify playing state</li>
+              <li>Pause & verify</li>
+            </ul>
+          </div>
+          <div class="card orange">
+            <h3><i class="fa-solid fa-heart"></i> Playlist</h3>
+            <ul>
+              <li>Add song to favourites</li>
+              <li>Verify in playlist</li>
+              <li>Non-existent song handling</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-filter"></i> Album Filter</h3>
+            <ul>
+              <li>Filter existing album</li>
+              <li>Filter non-existent album</li>
+              <li>Result count validation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 14: DATA-DRIVEN IN MUSIC PLAYER ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-database icon"></i>Music Player &mdash; Data-Driven Design</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">Typed Interfaces & External Data</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h3><i class="fa-solid fa-right-to-bracket"></i> Login Test Data</h3>
+            <ul>
+              <li>LoginTestCase interface with username, password, valid flag</li>
+              <li>4 test scenarios from loginData array</li>
+              <li>forEach loop generates one test per entry</li>
+              <li>Dynamic test names from description field</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-music"></i> Music Test Data</h3>
+            <ul>
+              <li>PlaylistTestCase &mdash; playlist/song pairs</li>
+              <li>AlbumTestCase &mdash; filter queries</li>
+              <li>shouldExist / shouldFind boolean flags</li>
+              <li>4 album + 2 playlist data entries</li>
+            </ul>
+          </div>
+        </div>
+        <pre><code class="language-typescript">// Typed data drives all test scenarios
+export const loginData: LoginTestCase[] = [
+  { username: 'demo', password: 'demo', valid: true, description: 'Valid credentials' },
+  { username: 'demo', password: 'wrongpass', valid: false, description: 'Invalid password' },
+];</code></pre>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 15: AI FEATURE ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-brain icon"></i>AI-Powered Failure Analysis</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--primary);"></i> The Highlight Feature</h3>
+        <div class="grid-2">
+          <div class="card" style="background: linear-gradient(135deg, #f1f5f9, #e0eaff);">
+            <h3><i class="fa-solid fa-gears"></i> How It Works</h3>
+            <ul>
+              <li>Custom Playwright Reporter (AIAnalyzerReporter)</li>
+              <li>Hooks into onTestEnd lifecycle event</li>
+              <li>Captures failed test name, error, stack trace</li>
+              <li>Sends to Google Gemini 2.5 Flash API</li>
+              <li>Saves JSON report with AI suggestions</li>
+            </ul>
+          </div>
+          <div class="card" style="background: linear-gradient(135deg, #f1f5f9, #e0eaff);">
+            <h3><i class="fa-solid fa-sparkles"></i> AI Response Includes</h3>
+            <ul>
+              <li><b>Category</b> &mdash; type of failure detected</li>
+              <li><b>Root Cause</b> &mdash; why the test failed</li>
+              <li><b>Suggested Fix</b> &mdash; actionable steps</li>
+              <li><b>Confidence</b> &mdash; score (0 to 1)</li>
+              <li>All saved to ai-analysis-report.json</li>
+            </ul>
+          </div>
+        </div>
+        <div class="flow-row" style="margin-top: 14px;">
+          <div class="flow-step" style="background: linear-gradient(135deg, #fc8181, #e53e3e);">Test Fails</div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-step">Capture Error</div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-step" style="background: linear-gradient(135deg, #ffd700, #ed8936);">Send to Gemini AI</div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-step" style="background: linear-gradient(135deg, #48bb78, #38a169);">Get Fix Suggestion</div>
+          <span class="flow-arrow">&rarr;</span>
+          <div class="flow-step">Save Report</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 16: AI REAL EXAMPLE ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-microscope icon"></i>AI Analysis &mdash; Real Example</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">Actual AI Output from Test Failures</h3>
+        <div class="grid-2">
+          <div class="card" style="background: linear-gradient(135deg, #f1f5f9, #e0eaff);">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Album Filter Failure</h3>
+            <ul>
+              <li><b>Error:</b> Expected 0 items, found 18</li>
+              <li><b>Root Cause:</b> Filter didn't apply &mdash; UI still showed all items instead of empty set</li>
+              <li><b>AI Fix:</b> Verify filter input is accepted, add assertion to confirm filter text, debug filtering logic</li>
+              <li><b>Confidence:</b> 0.95</li>
+            </ul>
+          </div>
+          <div class="card" style="background: linear-gradient(135deg, #f1f5f9, #e0eaff);">
+            <h3><i class="fa-solid fa-circle-xmark"></i> Play Song Failure</h3>
+            <ul>
+              <li><b>Error:</b> Expected truthy, received false</li>
+              <li><b>Root Cause:</b> Song playback didn't start &mdash; play action did not produce expected state</li>
+              <li><b>AI Fix:</b> Verify playback logic, check audio dependencies, handle async properly with await</li>
+              <li><b>Confidence:</b> 0.95</li>
+            </ul>
+          </div>
+        </div>
+        <p style="text-align: center; margin-top: 14px; font-size: 0.9em;">
+          <span class="highlight"><i class="fa-solid fa-lightbulb"></i> Impact:</span>
+          AI suggestions reduced debugging time significantly by pointing directly to the root cause
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 17: MUSIC PLAYER SUMMARY ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-chart-bar icon"></i>Music Player &mdash; Summary</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 14px;">Project At a Glance</h3>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;">
+          <div class="stat-box">
+            <i class="fa-solid fa-file-code" style="color: var(--primary);"></i>
+            <h3 style="color: var(--primary);">7 Test Specs</h3>
+            <p>login, logout, search, playSong, playlist, albumFilter, example</p>
+          </div>
+          <div class="stat-box">
+            <i class="fa-solid fa-layer-group" style="color: var(--secondary);"></i>
+            <h3 style="color: var(--secondary);">5 Page Objects</h3>
+            <p>Login, Home, Album, Player, Playlist</p>
+          </div>
+          <div class="stat-box">
+            <i class="fa-solid fa-brain" style="color: var(--warning);"></i>
+            <h3 style="color: var(--warning);">AI Reporter</h3>
+            <p>Gemini-powered failure analysis with fix suggestions</p>
+          </div>
+          <div class="stat-box">
+            <i class="fa-brands fa-github" style="color: var(--success);"></i>
+            <h3 style="color: var(--success);">CI/CD Pipeline</h3>
+            <p>GitHub Actions on push & PR with artifact upload</p>
+          </div>
+        </div>
+        <div class="ai-highlight" style="margin-top: 14px;">
+          <h3 style="text-align: center;"><i class="fa-solid fa-trophy"></i> Key Achievement</h3>
+          <p style="text-align: center; font-size: 0.9em; margin: 6px 0 0;">
+            Built a fully automated E2E test suite with <b>AI-powered error analysis</b> that captures failures,
+            sends them to Gemini AI, and generates actionable fix suggestions &mdash; reducing debugging time and
+            improving test maintainability.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION DIVIDER: API TESTING ==================== -->
+    <section class="section-divider">
+      <h2><i class="fa-solid fa-plug icon"></i>Project 2</h2>
+      <div class="content" style="text-align: center;">
+        <h1 style="color: rgb(61, 97, 214); font-size: 2.2em; margin-bottom: 15px;">
+          <i class="fa-solid fa-server" style="color: #ffd700;"></i> REST API Testing
+        </h1>
+        <p style="font-size: 1em; color: rgba(65, 102, 184, 0.9); margin-bottom: 20px;">
+          Comprehensive CRUD API Testing with Cypress &mdash; restful-api.dev
+        </p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
+          <span class="pill">Cypress</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">cy.request()</span>
+          <span class="pill">Fixtures</span>
+          <span class="pill">CRUD Operations</span>
+          <span class="pill">Negative Testing</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 19: API ENDPOINTS ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-route icon"></i>API Testing &mdash; Endpoints & Coverage</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 10px;">restful-api.dev &mdash; Full CRUD Coverage</h3>
+        <table class="endpoint-table">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Endpoint</th>
+              <th>Test File</th>
+              <th>What I Tested</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="method-badge method-get">GET</span></td>
+              <td>/objects &amp; /objects/{id}</td>
+              <td>objects.get.cy.js</td>
+              <td>Retrieve all objects, single object by ID, property validation</td>
+            </tr>
+            <tr>
+              <td><span class="method-badge method-post">POST</span></td>
+              <td>/objects</td>
+              <td>objects.post.cy.js</td>
+              <td>Create new objects from mobile device fixture data</td>
+            </tr>
+            <tr>
+              <td><span class="method-badge method-put">PUT</span></td>
+              <td>/objects/{id}</td>
+              <td>objects.put.cy.js</td>
+              <td>Full object replacement, verify updated fields</td>
+            </tr>
+            <tr>
+              <td><span class="method-badge method-patch">PATCH</span></td>
+              <td>/objects/{id}</td>
+              <td>objects.patch.cy.js</td>
+              <td>Partial update with name change, data integrity check</td>
+            </tr>
+            <tr>
+              <td><span class="method-badge method-delete">DELETE</span></td>
+              <td>/objects/{id}</td>
+              <td>objects.delete.cy.js</td>
+              <td>Delete created object, verify 200/204 status</td>
+            </tr>
+            <tr>
+              <td><span class="method-badge method-post">POST</span></td>
+              <td>/objects (invalid)</td>
+              <td>objects.negative.cy.js</td>
+              <td>Negative testing &mdash; invalid/missing fields</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 20: API TESTING APPROACH ==================== -->
+    <section>
+      <h2><i class="fa-solid fa-flask-vial icon"></i>API Testing &mdash; Approach</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">How I Built & Organized API Tests</h3>
+        <div class="grid-2">
+          <div class="card green">
+            <h3><i class="fa-solid fa-wrench"></i> Testing Strategy</h3>
+            <ul>
+              <li>6 test files &mdash; one per HTTP method + negative</li>
+              <li>Fixture-based test data (mobileDevices.json)</li>
+              <li>Create-then-test pattern for GET, PUT, PATCH, DELETE</li>
+              <li>Status code validation (200, 201, 204)</li>
+              <li>Response body property & type assertions</li>
+              <li>Error handling with failOnStatusCode: false</li>
+            </ul>
+          </div>
+          <div class="card alt">
+            <h3><i class="fa-solid fa-database"></i> Fixture Data</h3>
+            <ul>
+              <li>5 mobile devices (iPhone, Samsung, Pixel, iPad, MacBook)</li>
+              <li>Each with price, color, capacity, CPU, screen size</li>
+              <li>Negative payloads &mdash; missing name field</li>
+              <li>Partial update payload for PATCH tests</li>
+              <li>Data loaded via cy.fixture() in before() hooks</li>
+              <li>Dynamic object creation before each test</li>
+            </ul>
+          </div>
+        </div>
+        <p style="text-align: center; margin-top: 12px; font-size: 0.9em;">
+          <span class="highlight"><i class="fa-solid fa-check"></i> Result:</span>
+          Complete CRUD coverage with positive and negative scenarios, fixture-driven data, and proper assertions
+        </p>
+      </div>
+    </section>
+    <section>
+      <h2><i class="fa-solid fa-lightbulb icon"></i>Training Key Takeaways</h2>
+      <div class="content">
+        <h3 style="text-align: center; margin-bottom: 12px;">What My Training Taught Me</h3>
+        <div class="ai-highlight">
+          <ul style="line-height: 1.7;">
+            <li><span class="accent">Async/Await</span> is fundamental to modern JavaScript test automation</li>
+            <li><span class="accent">TypeScript</span> makes test code safer, maintainable, and self-documenting</li>
+            <li><span class="accent">Page Object Model</span> & Custom Fixtures eliminate boilerplate</li>
+            <li><span class="accent">Data-Driven Testing</span> maximizes coverage with minimal code</li>
+            <li><span class="accent">API Testing</span> provides 10x faster feedback than UI tests</li>
+            <li><span class="accent">CI/CD Integration</span> ensures quality in every commit</li>
+            <li><span class="accent">Mobile Testing</span> with Appium & WebDriverIO covers native app scenarios</li>
+          </ul>
+        </div>
+        <p style="text-align: center; margin-top: 12px; font-size: 1em; color: var(--primary); font-weight: 600;">
+          Ready to apply these skills in production!
+        </p>
+      </div>
+    </section>
+    <!-- ==================== SLIDE 21: THANK YOU ==================== -->
+    <section>
+      
+      <div class="content" style="text-align: center;">
+        <h1 style="color: var(--primary); font-size: 2.2em; margin-bottom: 20px;"> Thank You !</h1>
+        <p style="font-size: 1em; color: var(--r-main-color); margin-bottom: 20px;">
+          I appreciate your time and guidance throughout this journey
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px;">
+          <div class="stat-box">
+            <i class="fa-solid fa-code" style="color: var(--primary);"></i>
+            <h3 style="color: var(--primary); font-size: 1em;">Hands-on Experience</h3>
+            <p>Built real automation frameworks with AI</p>
+          </div>
+          <div class="stat-box">
+            <i class="fa-solid fa-users" style="color: var(--secondary);"></i>
+            <h3 style="color: var(--secondary); font-size: 1em;">Team Collaboration</h3>
+            <p>Learned from QE professionals</p>
+          </div>
+          <div class="stat-box">
+            <i class="fa-solid fa-graduation-cap" style="color: var(--success);"></i>
+            <h3 style="color: var(--success); font-size: 1em;">Continuous Learning</h3>
+            <p>Ready to keep growing</p>
+          </div>
+        </div>
+        <p style="margin-top: 25px; color: var(--r-heading-color); font-size: 0.85em;">
+          <i class="fa-solid fa-building"></i> EverNorth QE Team &bull; February 2026
+        </p>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+<script src="https://unpkg.com/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="https://unpkg.com/reveal.js/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: true,
+    transition: 'slide',
+    width: 1440,
+    height: 900,
+    margin: 0.04,
+    minScale: 0.2,
+    maxScale: 1.1,
+    center: true,
+    plugins: [ RevealHighlight, RevealNotes ]
+  });
+</script>
+
+</body>
+</html>
